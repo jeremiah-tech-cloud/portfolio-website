@@ -3,11 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <!-- ══════════════════════════════════════════════
+         FIX 4: SEO & META TAGS
+         ══════════════════════════════════════════════ -->
+
+    <!-- Page title — appears in browser tab and Google search results -->
+    <title>Jeremiah Peter — Frontend Web Developer</title>
+
+    <!-- Basic SEO: the sentence Google shows under your link in search -->
+    <meta name="description" content="Jeremiah Peter is a Frontend Web Developer building responsive, modern, and high-performance web applications with clean code and exceptional user experiences." />
+    <meta name="author" content="Jeremiah Peter" />
+    <meta name="keywords" content="Frontend Developer, Web Developer, HTML, CSS, JavaScript, Responsive Design, Portfolio, Jeremiah Peter" />
+
+    <!-- Canonical URL: tells Google which URL is the definitive version
+         of this page — prevents duplicate content penalties.
+         IMPORTANT: Replace with your actual live domain once deployed. -->
+    <link rel="canonical" href="https://jeremiahpeter.netlify.app/" />
+
+    <!-- ── Open Graph (Facebook, WhatsApp, LinkedIn previews) ── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://jeremiahpeter.netlify.app/" />
+    <meta property="og:title"       content="Jeremiah Peter — Frontend Web Developer" />
+    <meta property="og:description" content="Building responsive, modern, and high-performance web applications with clean code and exceptional user experiences." />
+    <!-- og:image: your 1424x752px image will display perfectly
+         on WhatsApp, LinkedIn, Twitter and Facebook previews.
+         Make sure the file is named og-image.png in your project folder. -->
+    <meta property="og:image"        content="https://jeremiahpeter.netlify.app/og-image.png" />
+    <meta property="og:image:width"  content="1424" />
+    <meta property="og:image:height" content="752" />
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:url"         content="https://jeremiahpeter.netlify.app/" />
+    <meta name="twitter:title"       content="Jeremiah Peter — Frontend Web Developer" />
+    <meta name="twitter:description" content="Building responsive, modern, and high-performance web applications with clean code and exceptional user experiences." />
+    <meta name="twitter:image"       content="https://jeremiahpeter.netlify.app/og-image.png" />
+
+    <!-- ── Theme color: tints the browser bar on Android Chrome ── -->
+    <meta name="theme-color" content="#38bdf8" />
+
+    <!-- ── Schema.org Person (structured data for AI search agents) ──
+         This is what Perplexity, ChatGPT, and Google AI Overviews read
+         to understand who you are and what you do.
+         Replace the url and sameAs values with your real links. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jeremiah Peter",
+      "jobTitle": "Frontend Web Developer",
+      "description": "Frontend Web Developer building responsive, modern, and high-performance web applications with clean code and exceptional user experiences.",
+      "url": "https://jeremiahpeter.netlify.app/",
+      "email": "jeremiahpetter040@gmail.com",
+      "sameAs": [
+        "https://github.com/jeremiah-tech-cloud"
+      ],
+      "knowsAbout": ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git", "GitHub"]
+    }
+    </script>
+
+    <!-- ══════════════════════════════════════════════
+         STYLESHEETS
+         ══════════════════════════════════════════════ -->
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
+
+    <!-- Overlay: dims the page when sidebar is open on mobile/tablet -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="dashboard-container">
       <aside class="sidebar">
         <div class="sidebar-brand">
@@ -48,8 +114,13 @@
 
       <div class="main-content">
         <header class="top-navbar">
+          <!-- Hamburger: only visible on tablet & mobile -->
+          <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
           <div class="navbar-actions">
-            <button class="theme-toggle-btn" aria-label="Toggle Theme Layout">
+            <button class="theme-toggle-btn" aria-label="Toggle Theme">
               <i class="fa-solid fa-moon icon-dark"></i>
               <i class="fa-solid fa-sun icon-light"></i>
             </button>
@@ -57,6 +128,7 @@
         </header>
 
         <main class="dashboard-view">
+
           <!-- ================= HOME ================= -->
           <section id="home" class="hero-card">
             <div class="hero-left-content">
@@ -71,9 +143,11 @@
             <div class="hero-right-avatar">
               <div class="avatar-circle-wrapper">
                 <img
-                  src="profile.jpg"
-                  alt="Jeremiah Peter"
+                  src="images/profile.jpeg"
+                  alt="Jeremiah Peter — Frontend Web Developer"
                   class="avatar-image"
+                  width="170"
+                  height="170"
                 />
               </div>
             </div>
@@ -89,7 +163,7 @@
             </div>
 
             <div class="projects-grid">
-              <!-- YOUR PROJECTS (UNCHANGED) -->
+
               <article class="project-card">
                 <div class="card-header">
                   <h4 class="project-title">Portfolio Website</h4>
@@ -209,6 +283,7 @@
                   <a href="#" class="btn btn-github">GitHub</a>
                 </div>
               </article>
+
             </div>
           </section>
 
@@ -227,18 +302,15 @@
                   Web Developer focused on building modern, responsive, and
                   interactive web applications.
                 </p>
-
                 <p>
                   I enjoy turning ideas into real-world digital experiences
                   using clean code, smooth UI design, and modern web
                   technologies.
                 </p>
-
                 <p>
                   My goal is to become a professional frontend engineer and
                   build impactful products that solve real problems.
                 </p>
-
                 <blockquote>
                   "Great design is not just visual — it's functional and
                   meaningful."
@@ -262,28 +334,24 @@
                   Semantic structure, accessibility, SEO-friendly layouts.
                 </div>
               </div>
-
               <div class="skill-row">
                 <div class="skill-name">CSS3</div>
                 <div class="skill-desc">
                   Responsive design, Flexbox, Grid, animations, UI styling.
                 </div>
               </div>
-
               <div class="skill-row">
                 <div class="skill-name">JavaScript</div>
                 <div class="skill-desc">
                   DOM manipulation, interactivity, API integration.
                 </div>
               </div>
-
               <div class="skill-row">
                 <div class="skill-name">Responsive Design</div>
                 <div class="skill-desc">
                   Mobile-first layouts across all devices.
                 </div>
               </div>
-
               <div class="skill-row">
                 <div class="skill-name">Git & GitHub</div>
                 <div class="skill-desc">
@@ -293,6 +361,7 @@
             </div>
           </section>
 
+          <!-- ================= CONTACT ================= -->
           <section id="contact" class="contact-section">
             <div class="section-title-wrapper">
               <span class="line"></span>
@@ -301,33 +370,40 @@
             </div>
 
             <div class="contact-wrapper">
-              <a
-                class="contact-card email"
-                href="mailto:jeremiahpetter040@gmail.com"
-              >
+
+              <!-- FIX 2: Email split into data attributes — bots never see the real address -->
+              <a class="contact-card email"
+                 href="#"
+                 id="contactEmail"
+                 data-u="jeremiahpetter040"
+                 data-d="gmail.com">
                 <i class="fa-solid fa-envelope"></i>
                 <span>Email</span>
               </a>
 
-              <a
-                class="contact-card whatsapp"
-                href="https://wa.me/255682823767"
-                target="_blank"
-              >
+              <!-- FIX 2: WhatsApp number stored in data attribute — rebuilt by JS -->
+              <a class="contact-card whatsapp"
+                 href="#"
+                 id="contactWhatsapp"
+                 data-n="255682823767"
+                 target="_blank"
+                 rel="noopener noreferrer">
                 <i class="fa-brands fa-whatsapp"></i>
                 <span>WhatsApp</span>
               </a>
 
-              <a
-                class="contact-card github"
-                href="https://github.com/yourusername"
-                target="_blank"
-              >
+              <!-- GitHub is a public profile — no personal data to protect -->
+              <a class="contact-card github"
+                 href="https://github.com/jeremiah-tech-cloud"
+                 target="_blank"
+                 rel="noopener noreferrer">
                 <i class="fa-brands fa-github"></i>
                 <span>GitHub</span>
               </a>
+
             </div>
           </section>
+
         </main>
       </div>
     </div>
