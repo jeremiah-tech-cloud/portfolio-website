@@ -14,6 +14,7 @@
    11. Contact Section
    12. Shared Section Title Wrapper
    13. Dark Theme Overrides
+   14. Responsive — Tablet & Mobile
    ========================================================================== */
 
 
@@ -21,30 +22,26 @@
    1. ROOT VARIABLES & SYSTEM INITIALIZATION
    ========================================================================== */
 :root {
-    /* Color Palette */
-    --bg-main: #f1f5f9;        /* Light slate grey background */
-    --bg-sidebar: #ffffff;     /* Pure white sidebar */
-    --bg-topnavbar: #e2e8f0;
-    --bg-card: #ffffff;        /* Pure white project cards */
-    --bg-card-hover: #e2e8f0;  /* Subtle grey hover state */
+    --bg-main: #f1f5f9;
+    --bg-sidebar: #ffffff;
+    --bg-topnavbar: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #e2e8f0;
     --toggle-button: hsl(201, 38%, 10%);
     --toggle-button-hover: hsl(224, 49%, 8%);
 
-    /* Borders & Typography */
     --border-color: rgba(15, 23, 42, 0.08);
     --border-color-hover: rgba(15, 23, 42, 0.16);
-    --text-primary: #0f172a;     /* Deep slate text */
-    --text-secondary: #475569;   /* Muted reading text */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
     --text-muted: #94a3b8;
 
-    /* Branding Accent Indicators */
     --accent-glow: #38bdf8;
     --tag-completed-bg: rgba(34, 197, 94, 0.1);
     --tag-completed-text: #4ade80;
     --tag-progress-bg: rgba(234, 179, 8, 0.1);
     --tag-progress-text: #facc15;
 
-    /* Card Action Button Colors (Live Demo / GitHub) */
     --btn-demo-bg: rgba(56, 189, 248, 0.1);
     --btn-demo-border: rgba(56, 189, 248, 0.35);
     --btn-demo-text: #0284c7;
@@ -57,15 +54,12 @@
     --btn-github-bg-hover: #464747;
     --btn-github-text-hover: #ffffff;
 
-    /* Layout Dimensions */
     --sidebar-width: 260px;
-    --navbar-height: 150px;
+    --navbar-height: 60px;
 
-    /* System Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Animatable gradient colors used by the hero card background */
 @property --gradientcolor1 {
     syntax: '<color>';
     initial-value: rgb(242, 246, 250);
@@ -74,13 +68,13 @@
 
 @property --gradientcolor2 {
     syntax: '<color>';
-    initial-value: rgba(221, 252, 237, 0.95);
+    initial-value: rgba(182, 223, 203, 0.95);
     inherits: false;
 }
 
 @property --gradientcolor3 {
     syntax: '<color>';
-    initial-value: rgba(233, 250, 252, 0.884);
+    initial-value: rgba(245, 247, 168, 0.884);
     inherits: false;
 }
 
@@ -88,7 +82,9 @@
 /* ==========================================================================
    2. GLOBAL RESET & BASE DEFAULTS
    ========================================================================== */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -102,7 +98,7 @@ html, body {
     background-color: var(--bg-main);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
-    overflow: hidden; /* Desktop view utilizes internal scroll container */
+    overflow: hidden; /* Desktop: scroll happens inside .dashboard-view */
 }
 
 a {
@@ -110,10 +106,9 @@ a {
     color: inherit;
 }
 
-/* Smooth color morph applied across core structural containers on theme switch.
-   NOTE: .about-section, .skills-section, .skill-row, and .about-text blockquote
-   were missing from this list, so their backgrounds/colors snapped instantly
-   instead of fading like the rest of the page when the theme toggled. */
+/* ── CRITICAL: Never let the reset touch Font Awesome icons ──
+   Font Awesome sets display:inline-block on its <i> pseudo-elements.
+   We must not override that with our transition list.              */
 body, aside, .main-content, .project-card, header, .theme-toggle-btn,
 .about-section, .skills-section, .skill-row, .about-text blockquote {
     transition: background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
@@ -123,7 +118,7 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
 
 
 /* ==========================================================================
-   3. PAGE CONTAINER LAYOUT (SIDEBAR + MAIN CONTENT)
+   3. PAGE CONTAINER LAYOUT
    ========================================================================== */
 .dashboard-container {
     display: flex;
@@ -156,7 +151,6 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     flex-shrink: 0;
 }
 
-/* -- Sidebar Branding Header -- */
 .sidebar-brand {
     display: flex;
     align-items: center;
@@ -177,7 +171,6 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     color: var(--text-primary);
 }
 
-/* -- Sidebar Menu -- */
 .sidebar-menu {
     display: flex;
     flex-direction: column;
@@ -197,26 +190,27 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     transition: var(--transition-smooth);
 }
 
+/* Keep Font Awesome icons at their natural size inside the sidebar */
 .menu-item i {
     font-size: 1.1rem;
     width: 20px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 .menu-item:hover {
     color: var(--text-primary);
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(56, 189, 248, 0.05);
 }
 
 .menu-item.active {
     color: var(--text-primary);
-    background-color: rgba(56, 189, 248, 0.08); /* Transparent glow backplate */
+    background-color: rgba(56, 189, 248, 0.08);
     box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.05);
     border-left: 3px solid var(--accent-glow);
-    padding-left: 13px; /* Compensate for left border */
+    padding-left: 13px;
 }
 
-/* -- Sidebar Footer -- */
 .sidebar-footer {
     border-top: 1px solid var(--border-color);
     padding-top: 20px;
@@ -233,6 +227,7 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     width: 8px;
     height: 8px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .status-indicator.online {
@@ -256,33 +251,53 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* Desktop: only the toggle exists, pin it to the right */
+    justify-content: flex-end;
     padding: 0 40px;
     background-color: var(--bg-topnavbar);
     backdrop-filter: blur(8px);
     z-index: 10;
+    flex-shrink: 0;
+    gap: 12px;
 }
 
-/* Wrapper for right-aligned navbar controls (currently just the toggle) */
+/* ── Hamburger button ──
+   Hidden on desktop. display:none here wins over everything.
+   The flex display is set ONLY inside the media queries below. */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    padding: 8px 10px;
+    border-radius: 8px;
+    line-height: 1;
+    transition: var(--transition-smooth);
+}
+
+.hamburger-btn:hover {
+    background-color: rgba(56, 189, 248, 0.08);
+}
+
+/* Ensure the bars icon inside is always visible when button is shown */
+.hamburger-btn i {
+    display: block;
+    line-height: 1;
+}
+
 .navbar-actions {
     display: flex;
     align-items: center;
-    padding: 10px;
     gap: 16px;
-    margin-left: auto; /* keeps actions pinned right even if more items are added */
 }
 
-/* Light/Dark mode toggle switch.
-   NOTE: previously used `position: fixed`, which pulled the button out of
-   .navbar-actions / .top-navbar entirely and floated it over the whole
-   viewport — this is what caused it to sit awkwardly instead of docking
-   correctly inside the navbar. Switched to a normal flow item so the
-   navbar's flex layout positions it properly at all screen sizes. */
+/* Theme toggle */
 .theme-toggle-btn {
     flex-shrink: 0;
     background: var(--toggle-button);
     border: 1px solid var(--border-color);
-    color: var(--text-secondary);
     padding: 10px;
     border-radius: 8px;
     cursor: pointer;
@@ -290,18 +305,17 @@ body, aside, .main-content, .project-card, header, .theme-toggle-btn,
     align-items: center;
     justify-content: center;
     transition: var(--transition-smooth);
+    line-height: 1;
 }
 
 .theme-toggle-btn:hover {
-    border-color: var(--border-color-hover);
     border: 2px solid var(--border-color-hover);
 }
 
-/* Bright (default) display: show the moon icon, hide the sun icon */
+/* Icon swap — light mode shows moon, dark mode shows sun */
 .theme-toggle-btn .icon-light { display: none; }
-.theme-toggle-btn .icon-dark  { display: block; color:#fcfbf9; }
+.theme-toggle-btn .icon-dark  { display: block; color: #fcfbf9; }
 
-/* Dark mode display: swap to the sun icon */
 body.dark-theme .theme-toggle-btn .icon-light { display: block; color: #f59e0b; }
 body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
 
@@ -311,29 +325,21 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
    ========================================================================== */
 .dashboard-view {
     flex-grow: 1;
-    overflow-y: auto; /* Independent internal page scrolling */
+    overflow-y: auto;
     padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-/* Webkit Scrollbar Styling */
-.dashboard-view::-webkit-scrollbar {
-    width: 8px;
-}
-
-.dashboard-view::-webkit-scrollbar-track {
-    background: transparent;
-}
-
+.dashboard-view::-webkit-scrollbar { width: 8px; }
+.dashboard-view::-webkit-scrollbar-track { background: transparent; }
 .dashboard-view::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.12);
     border-radius: 4px;
 }
-
 .dashboard-view::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 
@@ -351,18 +357,15 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: linear-gradient(135deg, var(--gradientcolor1), var(--gradientcolor2), var(--gradientcolor3));
     transition: --gradientcolor1 1s, --gradientcolor2 1s, --gradientcolor3 1s;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.288),
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
                 inset 0 0 60px rgba(255, 255, 255, 0.062);
 }
 
-/* Dynamic glow backplates shifting under glass frame overlay */
 .hero-card::before {
     content: '';
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 450px;
-    height: 450px;
+    top: -20%; right: -10%;
+    width: 450px; height: 450px;
     background: radial-gradient(circle, rgba(245, 244, 252, 0.199) 0%, transparent 70%);
     z-index: 1;
     pointer-events: none;
@@ -371,10 +374,8 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
 .hero-card::after {
     content: '';
     position: absolute;
-    bottom: -30%;
-    left: 20%;
-    width: 400px;
-    height: 400px;
+    bottom: -30%; left: 20%;
+    width: 400px; height: 400px;
     background: radial-gradient(circle, rgba(192, 240, 240, 0.12) 0%, transparent 70%);
     z-index: 1;
     pointer-events: none;
@@ -405,10 +406,8 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     font-size: 1.05rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    font-weight: 400;
 }
 
-/* -- Hero Avatar -- */
 .hero-right-avatar {
     position: relative;
     z-index: 2;
@@ -416,11 +415,13 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
 }
 
 .avatar-circle-wrapper {
-    width: 170px;
-    height: 170px;
+    /* Scales fluidly between 110px (smallest mobile) and 170px (desktop).
+       20vw hits the sweet spot on mid-range viewports in between. */
+    width: clamp(110px, 20vw, 170px);
+    height: clamp(110px, 20vw, 170px);
     border-radius: 50%;
     padding: 4px;
-    background: linear-gradient(135deg, #a855f7, #06b6d4); /* Gradient avatar ring boundary */
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
     box-shadow: 0 0 30px rgba(6, 182, 212, 0.25);
     display: flex;
     align-items: center;
@@ -432,8 +433,9 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    background-color: var(--bg-card); /* Fallback backplate */
-    border: 3px solid #141b30; /* Fine separation line */
+    background-color: var(--bg-card);
+    border: 3px solid #141b30;
+    display: block;
 }
 
 
@@ -446,37 +448,12 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     gap: 24px;
 }
 
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.section-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-}
-
-.project-count-badge {
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-color);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-}
-
-/* -- Projects Grid -- */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Balanced structural columns */
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-/* -- Project Card -- */
 .project-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -487,15 +464,15 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     justify-content: space-between;
     min-height: 290px;
     transition: var(--transition-smooth);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .project-card:hover {
     transform: translateY(-4px);
     background-color: var(--bg-card-hover);
     border-color: var(--border-color-hover);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25),
-                0 0 1px 1px rgba(56, 189, 248, 0.2); /* Soft accent lighting wrap */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15),
+                0 0 1px 1px rgba(56, 189, 248, 0.2);
 }
 
 .card-header {
@@ -507,19 +484,19 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
 }
 
 .project-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.4;
 }
 
-/* -- Status Labels -- */
 .status-tag {
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 6px;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .status-completed {
@@ -537,10 +514,9 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     line-height: 1.5;
     color: var(--text-secondary);
     margin-bottom: 20px;
-    flex-grow: 1; /* Pushes content tags uniformly towards the bottom boundary */
+    flex-grow: 1;
 }
 
-/* -- Tech Stack Tags -- */
 .tech-stack-tags {
     display: flex;
     flex-wrap: wrap;
@@ -552,13 +528,12 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--text-secondary);
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(0, 0, 0, 0.03);
     border: 1px solid var(--border-color);
     padding: 4px 10px;
     border-radius: 6px;
 }
 
-/* -- Card Action Buttons -- */
 .card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -623,6 +598,10 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     color: var(--text-secondary);
 }
 
+.about-text p + p {
+    margin-top: 16px;
+}
+
 .about-text strong {
     color: var(--text-primary);
 }
@@ -655,7 +634,6 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     gap: 12px;
 }
 
-/* Each row behaves like a table row */
 .skill-row {
     display: grid;
     grid-template-columns: 180px 1fr;
@@ -663,7 +641,7 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     padding: 15px 20px;
     border-radius: 10px;
     background: var(--bg-sidebar);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     transition: 0.3s ease;
 }
 
@@ -695,35 +673,19 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     align-items: center;
 }
 
-/* -- Triangle Grid Layout -- */
 .contact-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 170px);
     grid-template-rows: auto auto;
     gap: 25px;
     justify-content: center;
-    align-items: center;
     margin-top: 40px;
 }
 
-/* Positioning (Triangle Layout) */
-.contact-card.email {
-    grid-column: 1;
-    grid-row: 1;
-}
+.contact-card.email    { grid-column: 1; grid-row: 1; }
+.contact-card.whatsapp { grid-column: 2; grid-row: 1; }
+.contact-card.github   { grid-column: 1 / span 2; grid-row: 2; justify-self: center; }
 
-.contact-card.whatsapp {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.contact-card.github {
-    grid-column: 1 / span 2;
-    grid-row: 2;
-    justify-self: center;
-}
-
-/* -- Card Base Style -- */
 .contact-card {
     width: 170px;
     height: 140px;
@@ -733,7 +695,6 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     align-items: center;
     gap: 10px;
     border-radius: 16px;
-    text-decoration: none;
     color: white;
     font-weight: 600;
     font-size: 0.95rem;
@@ -741,24 +702,12 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.contact-card i {
-    font-size: 28px;
-}
+.contact-card i { font-size: 28px; }
 
-/* -- Brand Colors -- */
-.contact-card.email {
-    background: #3b82f6; /* blue */
-}
+.contact-card.email    { background: #3b82f6; }
+.contact-card.whatsapp { background: #25D366; }
+.contact-card.github   { background: #111827; }
 
-.contact-card.whatsapp {
-    background: #25D366; /* green */
-}
-
-.contact-card.github {
-    background: #111827; /* dark */
-}
-
-/* -- Hover Effects -- */
 .contact-card:hover {
     transform: translateY(-6px) scale(1.05);
     filter: brightness(1.1);
@@ -792,15 +741,25 @@ body.dark-theme .theme-toggle-btn .icon-dark  { display: none; }
     white-space: nowrap;
 }
 
+.project-count-badge {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
 
 /* ==========================================================================
    13. DARK THEME OVERRIDES
    ========================================================================== */
 body.dark-theme {
-    /* Dark dashboard color palette */
     --bg-main: hsl(224, 49%, 8%);
     --bg-sidebar: #0f162a;
-    --bg-topnavbar: rgba(10, 15, 29, 0.8);
+    --bg-topnavbar: rgba(10, 15, 29, 0.9);
     --bg-card: #131c35;
     --bg-card-hover: hwb(223 10% 73%);
     --toggle-button: #f1f5f9;
@@ -811,7 +770,6 @@ body.dark-theme {
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
 
-    /* Card Action Button Colors (Live Demo / GitHub) — dark mode */
     --btn-demo-bg: rgba(255, 255, 255, 0.03);
     --btn-demo-border: rgba(255, 255, 255, 0.06);
     --btn-demo-text: #f8fafc;
@@ -825,10 +783,242 @@ body.dark-theme {
     --btn-github-text-hover: #f8fafc;
 }
 
-/* Hero card gradient swap for dark mode */
 body.dark-theme .hero-card {
     --gradientcolor1: rgba(28, 17, 44, 0.95);
     --gradientcolor2: rgba(13, 26, 42, 0.95);
     --gradientcolor3: rgba(11, 41, 43, 0.95);
 }
 
+/* Dark theme: toggle icon shows sun in yellow */
+body.dark-theme .theme-toggle-btn {
+    background: var(--toggle-button);
+}
+
+
+/* ==========================================================================
+   14. RESPONSIVE — SIDEBAR OVERLAY (shared between tablet & mobile)
+   ========================================================================== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+/* ==========================================================================
+   TABLET  (768px – 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) and (min-width: 768px) {
+
+    html, body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    /* Sidebar slides in from the left as a fixed overlay */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        width: 260px;
+        height: 100%;
+        z-index: 100;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+    }
+
+    body.sidebar-open .sidebar    { left: 0; }
+    body.sidebar-open .sidebar-overlay { display: block; }
+
+    /* Navbar: fixed so it stays visible while the user scrolls */
+    .top-navbar {
+        height: 64px;
+        padding: 0 24px;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+    }
+
+    /* Show hamburger on tablet */
+    .hamburger-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-content {
+        width: 100%;
+        height: auto;
+        /* Push content below the fixed navbar so nothing hides behind it */
+        padding-top: 64px;
+    }
+
+    .dashboard-view {
+        overflow-y: visible;
+        padding: 28px 24px;
+        gap: 32px;
+    }
+
+    /* Hero: avatar on top, text centred below */
+    .hero-card {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 36px 28px;
+        gap: 24px;
+    }
+
+    .hero-left-content { max-width: 100%; }
+    .hero-right-avatar { padding-right: 0; }
+
+    /* avatar size handled by clamp() in base styles — no override needed */
+
+    /* Projects: 2 per row */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Skills: slightly narrower label */
+    .skill-row {
+        grid-template-columns: 140px 1fr;
+    }
+
+    .about-section,
+    .skills-section  { padding: 60px 6%; }
+    .contact-section { padding: 60px 6%; }
+}
+
+
+/* ==========================================================================
+   MOBILE  (≤ 767px)
+   ========================================================================== */
+@media (max-width: 767px) {
+
+    html, body {
+        overflow: auto;
+        height: auto;
+    }
+
+    .dashboard-container {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    /* Sidebar slides in from the left */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        width: 260px;
+        height: 100%;
+        z-index: 100;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+    }
+
+    body.sidebar-open .sidebar          { left: 0; }
+    body.sidebar-open .sidebar-overlay  { display: block; }
+
+    /* Navbar: fixed so it stays visible while the user scrolls */
+    .top-navbar {
+        height: 60px;
+        padding: 0 16px;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+    }
+
+    /* Show hamburger on mobile */
+    .hamburger-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-content {
+        width: 100%;
+        height: auto;
+        /* Push content below the fixed navbar so nothing hides behind it */
+        padding-top: 60px;
+    }
+
+    .dashboard-view {
+        overflow-y: visible;
+        padding: 16px;
+        gap: 24px;
+    }
+
+    /* Hero: avatar on top, text centred below */
+    .hero-card {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 28px 20px;
+        gap: 20px;
+    }
+
+    .hero-left-content { max-width: 100%; }
+    .hero-right-avatar { padding-right: 0; }
+
+    /* avatar size handled by clamp() in base styles — no override needed */
+
+    .dev-name        { font-size: 2rem; }
+    .dev-title       { font-size: 1.1rem; }
+    .dev-description { font-size: 0.95rem; }
+
+    /* Projects: 1 per row */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Skills: stack label above description */
+    .skill-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .about-section,
+    .skills-section  { padding: 40px 16px; }
+    .contact-section { padding: 40px 16px; }
+
+    /* Contact cards */
+    .contact-wrapper {
+        grid-template-columns: repeat(2, 140px);
+    }
+
+    .contact-card {
+        width: 140px;
+        height: 120px;
+    }
+
+    /* Shrink decorative lines */
+    .section-title-wrapper .line          { width: 50px; }
+    .section-title-wrapper .section-title { font-size: 1rem; letter-spacing: 1.5px; }
+}
