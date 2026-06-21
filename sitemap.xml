@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml — Jeremiah Peter Portfolio
+  Tells search engines and AI agents the structure of your site,
+  when it was last updated, and how important each section is.
+
+  After every significant update to your portfolio, change the
+  <lastmod> date below to today's date so Google re-crawls it.
+
+  priority values: 1.0 = most important, 0.5 = normal, 0.3 = low
+  changefreq: how often you expect the content to change
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home section — highest priority, this is your main landing -->
+  <url>
+    <loc>https://jeremiahpeter.netlify.app/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Projects section — second most important, shows your work -->
+  <url>
+    <loc>https://jeremiahpeter.netlify.app/#projects</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- About section -->
+  <url>
+    <loc>https://jeremiahpeter.netlify.app/#about</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Skills section -->
+  <url>
+    <loc>https://jeremiahpeter.netlify.app/#skills</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact section -->
+  <url>
+    <loc>https://jeremiahpeter.netlify.app/#contact</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

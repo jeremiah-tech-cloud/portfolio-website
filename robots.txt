@@ -1,0 +1,33 @@
+# ============================================================
+# robots.txt — Jeremiah Peter Portfolio
+# Tells search engines and AI crawlers what they can index.
+# ============================================================
+
+# Allow all standard search engine crawlers (Google, Bing, etc.)
+User-agent: *
+Allow: /
+
+# Explicitly invite Google's crawler
+User-agent: Googlebot
+Allow: /
+
+# Explicitly invite Bing's crawler
+User-agent: Bingbot
+Allow: /
+
+# Explicitly invite ChatGPT's crawler — lets your site appear
+# as a source when someone asks ChatGPT about frontend developers
+User-agent: GPTBot
+Allow: /
+
+# Explicitly invite Perplexity's crawler — same benefit
+User-agent: PerplexityBot
+Allow: /
+
+# Explicitly invite Claude's crawler
+User-agent: ClaudeBot
+Allow: /
+
+# Point all crawlers to your sitemap so they find your
+# content immediately without having to guess the URL
+Sitemap: https://jeremiahpeter.netlify.app/sitemap.xml

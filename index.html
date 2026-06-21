@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="all.min.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <i class="fa-solid fa-code-branch brand-icon"></i>
+          <span class="brand-text">v1.0</span>
+        </div>
+
+        <nav class="sidebar-menu">
+          <a href="#home" class="menu-item active">
+            <i class="fa-solid fa-house"></i>
+            <span class="menu-text">Home</span>
+          </a>
+          <a href="#projects" class="menu-item">
+            <i class="fa-solid fa-layer-group"></i>
+            <span class="menu-text">Projects</span>
+          </a>
+          <a href="#about" class="menu-item">
+            <i class="fa-solid fa-user"></i>
+            <span class="menu-text">About</span>
+          </a>
+          <a href="#skills" class="menu-item">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span class="menu-text">Skills</span>
+          </a>
+          <a href="#contact" class="menu-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span class="menu-text">Contact</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-profile-summary">
+            <div class="status-indicator online"></div>
+            <span class="status-text">Available for Hire</span>
+          </div>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <header class="top-navbar">
+          <div class="navbar-actions">
+            <button class="theme-toggle-btn" aria-label="Toggle Theme Layout">
+              <i class="fa-solid fa-moon icon-dark"></i>
+              <i class="fa-solid fa-sun icon-light"></i>
+            </button>
+          </div>
+        </header>
+
+        <main class="dashboard-view">
+          <!-- ================= HOME ================= -->
+          <section id="home" class="hero-card">
+            <div class="hero-left-content">
+              <h1 class="dev-name">Jeremiah Peter</h1>
+              <h2 class="dev-title">Frontend Web Developer</h2>
+              <p class="dev-description">
+                Building responsive, modern, and high-performance web
+                applications with clean code and exceptional user experiences.
+              </p>
+            </div>
+
+            <div class="hero-right-avatar">
+              <div class="avatar-circle-wrapper">
+                <img
+                  src="profile.jpg"
+                  alt="Jeremiah Peter"
+                  class="avatar-image"
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= PROJECTS ================= -->
+          <section id="projects" class="projects-section">
+            <div class="section-title-wrapper">
+              <span class="line"></span>
+              <h3 class="section-title">PROJECTS PERFORMED</h3>
+              <span class="project-count-badge">6 Active Repos</span>
+              <span class="line"></span>
+            </div>
+
+            <div class="projects-grid">
+              <!-- YOUR PROJECTS (UNCHANGED) -->
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">Portfolio Website</h4>
+                  <span class="status-tag status-completed">Completed</span>
+                </div>
+                <p class="project-desc">
+                  Clean UI showcasing personal work, interactive components, and
+                  responsive grid layouts.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">Task Manager App</h4>
+                  <span class="status-tag status-completed">Completed</span>
+                </div>
+                <p class="project-desc">
+                  Responsive task tracking dashboard featuring kanban boards,
+                  local data caching, and sorting filters.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">Movie Search App (API-based)</h4>
+                  <span class="status-tag status-completed">Completed</span>
+                </div>
+                <p class="project-desc">
+                  Dynamic movie data fetcher integrating asynchronous REST API
+                  queries with real-time UI filtering.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">Fetch API</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">E-commerce Frontend</h4>
+                  <span class="status-tag status-progress">In Progress</span>
+                </div>
+                <p class="project-desc">
+                  Interactive product catalog, cart logic, checkout UI, and
+                  animations.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">Weather App</h4>
+                  <span class="status-tag status-completed">Completed</span>
+                </div>
+                <p class="project-desc">
+                  Real-time weather dashboard using OpenWeather API.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="card-header">
+                  <h4 class="project-title">Mini Dashboard App</h4>
+                  <span class="status-tag status-completed">Completed</span>
+                </div>
+                <p class="project-desc">
+                  Analytics dashboard with UI stats and data visualization
+                  layout.
+                </p>
+                <div class="tech-stack-tags">
+                  <span class="tech-tag">HTML5</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="card-actions">
+                  <a href="#" class="btn btn-demo">Live Demo</a>
+                  <a href="#" class="btn btn-github">GitHub</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- ================= ABOUT ================= -->
+          <section id="about" class="about-section">
+            <div class="section-title-wrapper">
+              <span class="line"></span>
+              <h3 class="section-title">ABOUT ME</h3>
+              <span class="line"></span>
+            </div>
+
+            <div class="about-container">
+              <div class="about-text">
+                <p>
+                  Hi, I'm <strong>Jeremiah Peter</strong>, a passionate Frontend
+                  Web Developer focused on building modern, responsive, and
+                  interactive web applications.
+                </p>
+
+                <p>
+                  I enjoy turning ideas into real-world digital experiences
+                  using clean code, smooth UI design, and modern web
+                  technologies.
+                </p>
+
+                <p>
+                  My goal is to become a professional frontend engineer and
+                  build impactful products that solve real problems.
+                </p>
+
+                <blockquote>
+                  "Great design is not just visual — it's functional and
+                  meaningful."
+                </blockquote>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= SKILLS ================= -->
+          <section id="skills" class="skills-section">
+            <div class="section-title-wrapper">
+              <span class="line"></span>
+              <h3 class="section-title">SKILLS & EXPERTISE</h3>
+              <span class="line"></span>
+            </div>
+
+            <div class="skills-table">
+              <div class="skill-row">
+                <div class="skill-name">HTML5</div>
+                <div class="skill-desc">
+                  Semantic structure, accessibility, SEO-friendly layouts.
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-name">CSS3</div>
+                <div class="skill-desc">
+                  Responsive design, Flexbox, Grid, animations, UI styling.
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-desc">
+                  DOM manipulation, interactivity, API integration.
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-name">Responsive Design</div>
+                <div class="skill-desc">
+                  Mobile-first layouts across all devices.
+                </div>
+              </div>
+
+              <div class="skill-row">
+                <div class="skill-name">Git & GitHub</div>
+                <div class="skill-desc">
+                  Version control and project collaboration.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" class="contact-section">
+            <div class="section-title-wrapper">
+              <span class="line"></span>
+              <h3 class="section-title">CONTACT ME</h3>
+              <span class="line"></span>
+            </div>
+
+            <div class="contact-wrapper">
+              <a
+                class="contact-card email"
+                href="mailto:jeremiahpetter040@gmail.com"
+              >
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email</span>
+              </a>
+
+              <a
+                class="contact-card whatsapp"
+                href="https://wa.me/255682823767"
+                target="_blank"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp</span>
+              </a>
+
+              <a
+                class="contact-card github"
+                href="https://github.com/yourusername"
+                target="_blank"
+              >
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
